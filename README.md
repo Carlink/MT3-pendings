@@ -1,70 +1,27 @@
-## vite-mui-ts boilerplate
+# MT3 Challenge - Pendings
 
-TypeScript + React + Redux + MUI + RRD + ESLint + Prettier
+## Color Palette
 
-![vite-mui-ts](https://i.ibb.co/j8JSrhV/Screenshot-2023-07-06-121352.png)
+https://coolors.co/user/palettes/65219e9f60d0f5000bf988f9
 
-### Getting Started
+## Requirements
 
-#### Clone the repo
+- Only front-end technologies are allowed.
+- The application looks like the wireframe. The color to be used in the application is #43ED3F.
+- JS Framework: React.
+- When you click on the first crossed-square in the wireframe, it should display a form to add a new pending to the dashboard. Fields: Priority, text, status. Statuses allowed: Active, Done, Deleted.
+- There should be a way to mark the pendings as "Done".
+- The cards with "Done" status are not displayed in the dashboard.
+- The "Active" and "Done" counters are incremented according to the action performed.
+- The pending card is draggable to place it wherever the user needs it in the Dashboard.
+- The pendings could be deleted from the dashboard once created.
+- The cards with "Done" and "Deleted" statuses are not displayed in the dashboard.
 
-```
-npx degit emre-cil/vite-mui-ts my-app
-```
+## Extras
 
-```
-cd my-app
-```
-
-#### Install Dependencies
-
-```
-pnpm install
-```
-
-#### Run
-
-```
-pnpm dev
-```
-
-#### Paths
-
-Application using absolute paths
-Example: '@/components/Counter/Counter';
-
-if you don't want to use you can remove these lines from
-
-> vite.config.ts
-
-```
- resolve: {
-    alias: {
-      '@': path.resolve(__dirname, 'src'),
-    },
-  },
-```
-
-> tsconfig.json
-
-```
-"paths": {
-      "@/*": ["./*"]
-    }
-```
-
-
-### Scripts
-
-| Script        | Description                        |
-| ------------- | ---------------------------------- |
-| pnpm dev      | Runs the application.              |
-| pnpm build    | Create builds for the application. |
-| pnpm preview  | Runs the Vite preview              |
-| pnpm lint     | Display eslint errors              |
-| pnpm lint:fix | Fix the eslint errors              |
-| pnpm format   | Runs prettier for all files        |
-| pnpm test     | Run tests                          |
-
-### Check List
-````
+- "Due date" is included. Rules: If the tasks should be completed within the current or the next day, the card color should be #FFD6D6.
+- Otherwise, the color is #FFFFFF.
+- Sort by "due date".
+- Validations.
+- The application should not allow duplicated descriptions.
+- The application is published on GitHub Pages. Please share the application link.
