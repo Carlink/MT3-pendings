@@ -3,6 +3,7 @@ import { defineConfig } from 'vite';
 import * as path from 'path';
 
 export default defineConfig({
+  base: '/MT3-pendings/',
   plugins: [react()],
   build: {},
   resolve: {
