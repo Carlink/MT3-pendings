@@ -6,12 +6,16 @@ type Priority = 'low' | 'medium' | 'high';
 
 type Status = 'active' | 'done' | 'deleted';
 
-interface Task {
-  priority: Priority;
+interface FormTask {
   text: string;
+  priority: Priority;
+  dueDate: Date | null;
+}
+interface Task extends FormTask {
+  id: string;
   status: Status;
-  dueDate: Date;
   color: string;
+  position: number;
 }
 
-export type { Task };
+export type { FormTask, Task, Status, Priority };
