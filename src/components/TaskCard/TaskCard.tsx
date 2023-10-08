@@ -1,9 +1,8 @@
 import React from 'react';
 // Components
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
+import ClearIcon from '@mui/icons-material/Clear';
 import Chip from '@mui/material/Chip';
 // Types
 import { Task, Priority } from '@/types/pendings';
@@ -11,8 +10,9 @@ import { Task, Priority } from '@/types/pendings';
 // Local Types
 interface TaskCardProps {
   task: Task;
-  removeTask: (text_id: string) => void;
-  markAsDone: (text_id: string) => void;
+  disabled: boolean;
+  removeTask: (e: any, text_id: string) => void;
+  markAsDone: (e: any, text_id: string) => void;
 }
 
 // Methods
@@ -26,19 +26,22 @@ const getPriorityColor = (priority: Priority): string => {
   return '#F16161'
 }
 
-const TaskCard: React.FC<TaskCardProps> = ({ task, removeTask, markAsDone }) => {
+const TaskCard: React.FC<TaskCardProps> = ({ task, removeTask, markAsDone, disabled }) => {
   return (
-    <div className="grid-item" onClick={() => markAsDone(task.id)}>
-      <div className='grid-item-content'>
-        <Chip label={task.priority} style={{ backgroundColor: getPriorityColor(task.priority), fontWeight: 600, color: 'white' }} />
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <p>{task.text}</p>
-          <IconButton color="secondary" aria-label="Eliminar" onClick={() => removeTask(task.id)}>
-            <DeleteIcon />
-          </IconButton>
+    <div className='grid-item'>
+      <div className={`grid-item-content ${disabled && 'disabled'}`}>
+        < div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div className='card-title'>{task.text}</div>
         </div>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          {!disabled && <Chip label={task.priority} style={{ backgroundColor: getPriorityColor(task.priority), fontWeight: 600, color: 'white', marginLeft: '5px' }} />}
+          <Button disabled={disabled} onClick={(e) => markAsDone(e, task.id)}>done</Button>
+        </div>
+        {!disabled && <IconButton color="error" style={{ position: 'absolute', top: 15, right: 15 }} onClick={(e) => removeTask(e, task.id)}>
+          <ClearIcon />
+        </IconButton>}
       </div>
-    </div>
+    </div >
 
   );
 };

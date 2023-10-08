@@ -10,7 +10,7 @@ const initialState: TaskState = {
   tasks: [
       {
         id: '1',
-        text: 'Realizar tarea de ejemplo 1',
+        text: 'Code Review',
         priority: 'low',
         status: 'active',
         dueDate: new Date,
@@ -20,7 +20,7 @@ const initialState: TaskState = {
 
       {
         id: '2',
-        text: 'Realizar tarea de ejemplo 2',
+        text: 'Bug Fix',
         priority: 'medium',
         status: 'active',
         dueDate: new Date,
@@ -29,7 +29,7 @@ const initialState: TaskState = {
       },
       {
         id: '3',
-        text: 'Realizar tarea de ejemplo 3',
+        text: 'Unit Test',
         priority: 'high',
         status: 'active',
         dueDate: new Date,
@@ -39,7 +39,7 @@ const initialState: TaskState = {
 
       {
         id: '4',
-        text: 'Realizar tarea de ejemplo 4',
+        text: 'API Integration',
         priority: 'low',
         status: 'active',
         dueDate: new Date,
@@ -53,7 +53,7 @@ const productSlice = createSlice({
   name: 'tasks',
   initialState,
   reducers: {
-    agregarProducto: (state, action: PayloadAction<FormTask>) => {
+    addTask: (state, action: PayloadAction<FormTask>) => {
       const newTask: Task = {
         id: uuidv4(),
         text: action.payload.text,
@@ -65,8 +65,16 @@ const productSlice = createSlice({
       };
       state.tasks.push(newTask);
     },
+    markAsDone: (state, action: PayloadAction<string>) => {
+      const index = state.tasks.findIndex((task: Task) => task.id === action.payload);
+      state.tasks[index].status = 'done'
+    },
+    removeTask: (state, action: PayloadAction<string>) => {
+      const index = state.tasks.findIndex((task: Task) => task.id === action.payload);
+      state.tasks[index].status = 'deleted'
+    }
   },
 });
 
-export const { agregarProducto } = productSlice.actions;
+export const { addTask, markAsDone, removeTask } = productSlice.actions;
 export default productSlice.reducer;

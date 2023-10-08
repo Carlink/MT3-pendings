@@ -16,8 +16,9 @@
 
 .dropzone {
   flex: 1;
-  height: 300px;
+  height: 60vh;
   border-radius: 1rem;
+  overflow: scroll;
 }
 
 .dropzone.left {
@@ -47,6 +48,22 @@
   justify-content: center;
   color: black;
   font-family: Arial, Helvetica, sans-serif;
-  align-items: center;
   border-radius: 8px;
+  align-items: baseline;
+  padding: 20px;
+}
+
+.disabled {
+  background: rgb(124 124 124) !important;
+}
+
+.disabled .card-title {
+  color: #5c5c5c;
+  text-decoration: line-through;
+}
+
+.card-title {
+  font-size: 20px;
+  font-weight: 900;
+  margin-bottom: 5px;
 }

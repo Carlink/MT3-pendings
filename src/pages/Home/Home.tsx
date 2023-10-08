@@ -6,10 +6,10 @@ const Home = () => {
   return (
     <Container sx={{ py: 2, position: 'relative' }}>
       <Stack gap={1} my={2}>
-        <Typography color='white' textAlign="center" variant="h2">
+        <Typography color='#43ED3F' textAlign="center" variant="h2">
           MT-3 Pendings
         </Typography>
-        <Typography color='white' textAlign="center" variant="subtitle1">
+        <Typography color='#43ED3F' textAlign="center" variant="subtitle1">
           Basic Task Application
         </Typography>
       </Stack>
