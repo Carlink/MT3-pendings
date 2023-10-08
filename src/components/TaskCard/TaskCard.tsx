@@ -1,4 +1,5 @@
 import React from 'react';
+import { differenceInHours } from 'date-fns';
 // Components
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
@@ -6,6 +7,7 @@ import ClearIcon from '@mui/icons-material/Clear';
 import Chip from '@mui/material/Chip';
 // Types
 import { Task, Priority } from '@/types/pendings';
+
 
 // Local Types
 interface TaskCardProps {
@@ -26,10 +28,16 @@ const getPriorityColor = (priority: Priority): string => {
   return '#F16161'
 }
 
+const remainingHours = (date: Date) => {
+  const now = new Date();
+  return differenceInHours(date, now);
+}
+
 const TaskCard: React.FC<TaskCardProps> = ({ task, removeTask, markAsDone, disabled }) => {
   return (
     <div className='grid-item'>
-      <div className={`grid-item-content ${disabled && 'disabled'}`}>
+      <div className={`grid-item-content ${remainingHours(task.dueDate) < 48 && 'no-time'} ${disabled && 'disabled'}`}>
+        <div>{remainingHours(task.dueDate)} remaining hours</div>
         < div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div className='card-title'>{task.text}</div>
         </div>

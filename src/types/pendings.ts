@@ -9,7 +9,7 @@ type Status = 'active' | 'done' | 'deleted';
 interface FormTask {
   text: string;
   priority: Priority;
-  dueDate: Date | null;
+  dueDate: Date;
 }
 interface Task extends FormTask {
   id: string;

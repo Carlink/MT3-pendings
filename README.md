@@ -25,3 +25,13 @@ https://coolors.co/user/palettes/65219e9f60d0f5000bf988f9
 - Validations.
 - The application should not allow duplicated descriptions.
 - The application is published on GitHub Pages. Please share the application link.
+
+## Install Instrucions
+
+Install with force dependencies (because some libraries are not supported by the latest React version).
+
+    npm install --force
+
+run application
+
+    npm run dev

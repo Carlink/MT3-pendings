@@ -13,7 +13,7 @@ const initialState: TaskState = {
         text: 'Code Review',
         priority: 'low',
         status: 'active',
-        dueDate: new Date,
+        dueDate: new Date('2023-10-10'),
         color: '#FF5733',
         position: 1
       },
@@ -23,7 +23,7 @@ const initialState: TaskState = {
         text: 'Bug Fix',
         priority: 'medium',
         status: 'active',
-        dueDate: new Date,
+        dueDate: new Date('2023-10-11'),
         color: '#33FF57',
         position: 2
       },
@@ -32,7 +32,7 @@ const initialState: TaskState = {
         text: 'Unit Test',
         priority: 'high',
         status: 'active',
-        dueDate: new Date,
+        dueDate: new Date('2023-10-12'),
         color: '#5733FF',
         position: 3
       },
@@ -42,7 +42,7 @@ const initialState: TaskState = {
         text: 'API Integration',
         priority: 'low',
         status: 'active',
-        dueDate: new Date,
+        dueDate: new Date('2023-10-13'),
         color: '#FF5733',
         position: 4
       }
