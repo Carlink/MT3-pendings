@@ -19,6 +19,9 @@ function Dashboard() {
   const tasksStore = useSelector((state: { tasks: { tasks: Task[] } }) => state.tasks.tasks);
   const dispatch = useDispatch();
 
+  const [activeCounter, setActiveCounter] = useState(0)
+  const [doneCounter, setDoneCounter] = useState(0)
+
   const [tasks, setTasks] = useState<TasksState>({
     main: tasksStore
   });
@@ -30,6 +33,16 @@ function Dashboard() {
         return task.status != 'deleted'
       })
     })
+    setActiveCounter(
+      tasksStore.filter((task: Task) => {
+        return task.status === 'active'
+      }).length
+    )
+    setDoneCounter(
+      tasksStore.filter((task: Task) => {
+        return task.status === 'done'
+      }).length
+    )
   }, [tasksStore])
 
   function onChange(sourceIndex: number, targetIndex: number) {
@@ -85,6 +98,11 @@ function Dashboard() {
           </GridDropZone>
         </div>
       </GridContextProvider>
+      <div>
+        <div style={{ color: 'white', fontSize: '18px' }}>
+          Active: {activeCounter} Done: {doneCounter}
+        </div>
+      </div>
     </div>
   );
 }

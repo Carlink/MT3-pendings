@@ -11,20 +11,20 @@ import {
   InputLabel,
   Select,
   MenuItem,
-  Grid,
-  IconButton,
 } from '@mui/material';
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { FormTask, Priority } from '@/types/pendings';
-
+import { toast } from 'react-toastify';
+import { useDispatch, useSelector } from "react-redux";
+import { Task } from '@/types/pendings';
 interface NewTaskDialogProps {
   emitSubmit: (form: FormTask) => void;
 }
 
 const NewTaskDialog: React.FC<NewTaskDialogProps> = ({ emitSubmit }) => {
+  const tasksStore = useSelector((state: { tasks: { tasks: Task[] } }) => state.tasks.tasks);
   const [open, setOpen] = useState(false);
   const [text, setText] = useState('');
   const [priority, setPriority] = useState<Priority>('low');
@@ -39,13 +39,27 @@ const NewTaskDialog: React.FC<NewTaskDialogProps> = ({ emitSubmit }) => {
   };
 
   const handleSubmit = () => {
-    emitSubmit({
-      text,
-      priority,
-      dueDate
-    })
-    // Cierra el diálogo
-    handleClose();
+    if (text.length > 0) {
+      const exist = tasksStore.find((task) => task.text === text);
+      if (exist) {
+        toast.error('Task name could not be repeated!');
+        return
+      }
+      emitSubmit({
+        text,
+        priority,
+        dueDate
+      })
+      // Cierra el diálogo
+      setText('');
+      setPriority('low');
+      setDueDate(new Date);
+
+      handleClose();
+    } else {
+      toast.error('Task name could not be empty!');
+    }
+
   };
 
   return (
@@ -56,10 +70,10 @@ const NewTaskDialog: React.FC<NewTaskDialogProps> = ({ emitSubmit }) => {
         </div>
       </div>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Formularios</DialogTitle>
+        <DialogTitle>Add new pending</DialogTitle>
         <DialogContent>
-          <DialogContentText>Ingresa los datos:</DialogContentText>
           <TextField
+            style={{ marginBottom: '20px' }}
             autoFocus
             margin="dense"
             label="Texto"
@@ -68,7 +82,7 @@ const NewTaskDialog: React.FC<NewTaskDialogProps> = ({ emitSubmit }) => {
             value={text}
             onChange={(e) => setText(e.target.value)}
           />
-          <FormControl fullWidth>
+          <FormControl fullWidth style={{ marginBottom: '20px' }}>
             <InputLabel>Selector</InputLabel>
             <Select
               value={priority}
