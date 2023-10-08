@@ -45,6 +45,7 @@ La siguiente aplicacion fue hecha a medida de los requerimeitnos,
 
 ## Mejorables
 
+- Persistencia con local storage
 - Por los tiempos, hay warnings que no se pudieron resolver
 - Se tuvieron que ignorar algunos errores de Typescript que no dieron tiempo de resolverse
 - La interfaz y experiencia de usuario son bastante mejorables
