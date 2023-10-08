@@ -28,7 +28,7 @@ const NewTaskDialog: React.FC<NewTaskDialogProps> = ({ emitSubmit }) => {
   const [open, setOpen] = useState(false);
   const [text, setText] = useState('');
   const [priority, setPriority] = useState<Priority>('low');
-  const [dueDate, setDueDate] = useState<Date | null>(new Date);
+  const [dueDate, setDueDate] = useState<Date>(new Date);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -97,7 +97,11 @@ const NewTaskDialog: React.FC<NewTaskDialogProps> = ({ emitSubmit }) => {
             <DateTimePicker
               label="Controlled picker"
               value={dueDate}
-              onChange={(newValue) => setDueDate(newValue)}
+              onChange={(newValue) => {
+                if (newValue) {
+                  setDueDate(newValue)
+                }
+              }}
             />
           </LocalizationProvider>
         </DialogContent>
